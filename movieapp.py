@@ -1,4 +1,3 @@
-#movieappp
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -27,13 +26,15 @@ def main():
         
         # Redirect to another page
         st.experimental_set_query_params(recommendations=recommendations)
-    # Check if the script is run as the main module
-    if __name__ == "__main__":
-     main()
+    
     # Display in small text
     st.write("A project by:")
-    # Display images and names (replace the placeholders with actual images and names)
- # Display images and names
+    # Check if the script is run as the main module
+    if __name__ == "__main__":
+        main()
+
+# Display images and names (replace the placeholders with actual images and names)
+# Move this code block outside of the main() function to ensure it's executed after the main content
 col1, col2, col3, col4, col5 = st.columns(5)
 with col1:
     st.image("me.JPG", caption="Ajay Macharla")
@@ -45,5 +46,3 @@ with col4:
     st.image("me.JPG", caption="Rakesh Pallagani")
 with col5:
     st.image("me.JPG", caption="Sri Ram")
-
-
