@@ -29,7 +29,7 @@ def main():
         st.experimental_set_query_params(recommendations=recommendations)
     # Check if the script is run as the main module
     if __name__ == "__main__":
-    main()
+     main()
     # Display in small text
     st.write("A project by:")
     # Display images and names (replace the placeholders with actual images and names)
