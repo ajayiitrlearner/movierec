@@ -29,20 +29,21 @@ def main():
     
     # Display in small text
     st.write("A project by:")
-    # Check if the script is run as the main module
-    if __name__ == "__main__":
-        main()
+    
+    # Display images and names (replace the placeholders with actual images and names)
+    # Display images and names
+    col1, col2, col3, col4, col5 = st.columns(5)
+    with col1:
+        st.image("me.JPG", caption="Ajay Macharla")
+    with col2:
+        st.image("movva.jpeg", caption="Ravi Teja Movva")
+    with col3:
+        st.image("me.JPG", caption="Shashi Karrenagari")
+    with col4:
+        st.image("me.JPG", caption="Rakesh Pallagani")
+    with col5:
+        st.image("me.JPG", caption="Sri Ram")
 
-# Display images and names (replace the placeholders with actual images and names)
-# Move this code block outside of the main() function to ensure it's executed after the main content
-col1, col2, col3, col4, col5 = st.columns(5)
-with col1:
-    st.image("me.JPG", caption="Ajay Macharla")
-with col2:
-    st.image("movva.jpeg", caption="Ravi Teja Movva")
-with col3:
-    st.image("me.JPG", caption="Shashi Karrenagari")
-with col4:
-    st.image("me.JPG", caption="Rakesh Pallagani")
-with col5:
-    st.image("me.JPG", caption="Sri Ram")
+# Call the main function
+if __name__ == "__main__":
+    main()
