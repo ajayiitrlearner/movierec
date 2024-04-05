@@ -33,6 +33,10 @@ def main():
     # Display images and names (replace the placeholders with actual images and names)
     for i in range(5):
         st.image("me.JPG", caption="Ajay Macharla")
+        st.image("movva.JPEG", caption="Ravi Teja Movva")
+        st.image("me.JPG", caption="Shashi Karrenagari")
+        st.image("me.JPG", caption="Rakesh Pallagani")
+        st.image("me.JPG", caption="Sri Ram")
 
 # Check if the script is run as the main module
 if __name__ == "__main__":
