@@ -32,7 +32,7 @@ def main():
     st.write("A project by:")
     # Display images and names (replace the placeholders with actual images and names)
     for i in range(5):
-        st.image("image_path_here", caption="Name Here")
+        st.image("me.JPG", caption="Ajay Macharla")
 
 # Check if the script is run as the main module
 if __name__ == "__main__":
