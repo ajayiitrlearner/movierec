@@ -42,7 +42,7 @@ def main():
     with col4:
         st.image("me.JPG", caption="Rakesh Pallagani")
     with col5:
-        st.image("me.JPG", caption="Sri Ram")
+        st.image("sriram.jpeg", caption="Sriram Ganeshraj")
 
 # Call the main function
 if __name__ == "__main__":
