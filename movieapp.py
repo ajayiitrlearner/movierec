@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
+import os  # Import the os module
 
 # Function to get recommendations based on selected movies
 def get_recommendations(selected_movies):
