@@ -2,12 +2,68 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import os  # Import the os module
+import warnings
+from warnings import filterwarnings
+filterwarnings('ignore')
+
+column_movies = ["movieId", "title", "genres"] 
+column_ratings = ["userId", "movieId", "rating", "timestamp"]
+
+movies = pd.read_table("movies.dat", sep="::", header=None, names=column_movies)
+ratings = pd.read_table("ratings.dat", sep="::", header=None, names=column_ratings)
+
+movie_ratings = pd.merge(movies,ratings, on='movieId', how='inner')
+movie_ratings.drop('timestamp', axis=1, inplace=True)
+
+reviews = movie_ratings.groupby(['title'])['rating'].agg(['count','mean']).round(1)
+
+movie_ratings=movie_ratings.astype({'movieId':'int32','userId':'int32','genres':'category'})
+
+user_counts = movie_ratings['userId'].value_counts()
+
+valid_user_ids = user_counts[user_counts > 0].index
+filtered_ratings = movie_ratings[movie_ratings['userId'].isin(valid_user_ids)]
+
+user_rating_list = [] 
+user_rating = pd.DataFrame()
+
+batch_size = 5000  # Set the batch size
+total_users = len(valid_user_ids)
+num_batches = total_users // batch_size + 1
+for i in range(num_batches):
+    start_index = i * batch_size
+    end_index = start_index + batch_size
+    batch_users = valid_user_ids[start_index:end_index]
+
+    batch_mov = pd.crosstab(index=filtered_ratings[filtered_ratings['userId'].isin(batch_users)]['userId'],
+                            columns=filtered_ratings[filtered_ratings['userId'].isin(batch_users)]['title'],
+                            values=filtered_ratings[filtered_ratings['userId'].isin(batch_users)]['rating'],
+                            aggfunc='sum')
+    user_rating_list.append(batch_mov)
+
+user_rating = pd.concat(user_rating_list, ignore_index=True)
 
 # Function to get recommendations based on selected movies
 def get_recommendations(selected_movies):
-    # Your recommendation logic goes here
-    recommendations = ["Recommendation 1", "Recommendation 2", "Recommendation 3"]
+    
+    userInput = selected_movies
+    
+    similarity = user_rating.corrwith(user_rating[userInput[0]], method = 'pearson') 
+    + user_rating.corrwith(user_rating[userInput[1]], method = 'pearson') 
+    + user_rating.corrwith(user_rating[userInput[2]], method = 'pearson')
+    
+    correlatedMovies = pd.DataFrame(similarity, columns = ['correlation'])
+    correlatedMovies = pd.merge(correlatedMovies, reviews, on = 'title')
+    correlatedMovies = pd.merge(correlatedMovies, movies, on = 'title')
+    
+    final_recommendation = correlatedMovies.query('mean>3.5 and count>300').sort_values('correlation', ascending=False)
+    recommendations =  final_recommendation['title'].head(3).tolist()
+    
     return recommendations
+#def get_recommendations(selected_movies):
+    # Your recommendation logic goes here
+  #  recommendations = ["Recommendation 1", "Recommendation 2", "Recommendation 3"]
+   # return recommendations
 
 # Read movie titles from the CSV file if it exists
 movies_df = pd.read_csv("movies.csv") if "movies.csv" in os.listdir() else None
