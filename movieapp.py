@@ -38,7 +38,7 @@ def main():
     with col2:
         st.image("movva.jpeg", caption="Ravi Teja Movva")
     with col3:
-        st.image("me.JPG", caption="Shashi Karrenagari")
+        st.image("shashi.jpeg", caption="Shashi Karrenagari")
     with col4:
         st.image("me.JPG", caption="Rakesh Pallagani")
     with col5:
