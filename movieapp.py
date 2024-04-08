@@ -12,12 +12,12 @@ column_ratings = ["userId", "movieId", "rating", "timestamp"]
 movies = pd.read_csv("movies2.csv")
 ratings = pd.read_csv("ratings.csv")
 
-movie_ratings = pd.merge(movies,ratings, on='movieId', how='inner')
+movie_ratings = pd.merge(movies, ratings, on='movieId', how='inner')
 movie_ratings.drop('timestamp', axis=1, inplace=True)
 
 reviews = movie_ratings.groupby(['title'])['rating'].agg(['count','mean']).round(1)
 
-movie_ratings=movie_ratings.astype({'movieId':'int32','userId':'int32','genres':'category'})
+movie_ratings = movie_ratings.astype({'movieId': 'int32', 'userId': 'int32', 'genres': 'category'})
 
 user_counts = movie_ratings['userId'].value_counts()
 
@@ -48,15 +48,15 @@ def get_recommendations(selected_movies):
     
     userInput = selected_movies
     
-    similarity = user_rating.corrwith(user_rating[userInput[0]], method = 'pearson') 
-    + user_rating.corrwith(user_rating[userInput[1]], method = 'pearson') 
-    + user_rating.corrwith(user_rating[userInput[2]], method = 'pearson')
+    similarity = user_rating.corrwith(user_rating[userInput[0]], method='pearson') \
+                 + user_rating.corrwith(user_rating[userInput[1]], method='pearson') \
+                 + user_rating.corrwith(user_rating[userInput[2]], method='pearson')
     
-    correlatedMovies = pd.DataFrame(similarity, columns = ['correlation'])
-    correlatedMovies = pd.merge(correlatedMovies, reviews, on = 'title')
-    correlatedMovies = pd.merge(correlatedMovies, movies, on = 'title')
+    correlatedMovies = pd.DataFrame(similarity, columns=['correlation'])
+    correlatedMovies = pd.merge(correlatedMovies, reviews, on='title')
+    correlatedMovies = pd.merge(correlatedMovies, movies, on='title')
     
-    final_recommendation = correlatedMovies.query('mean>3.5 and count>300').sort_values('correlation', ascending=False)
+    final_recommendation = correlatedMovies.query('mean > 3.5 and count > 300').sort_values('correlation', ascending=False)
     final_recommendation = final_recommendation[np.isin(final_recommendation['title'], userInput, invert=True)]
     recommendations =  final_recommendation['title'].head(3).tolist()
     
