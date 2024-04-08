@@ -9,8 +9,8 @@ filterwarnings('ignore')
 column_movies = ["movieId", "title", "genres"] 
 column_ratings = ["userId", "movieId", "rating", "timestamp"]
 
-movies = pd.read_table("movies.dat", sep="::", header=None, names=column_movies)
-ratings = pd.read_table("ratings.dat", sep="::", header=None, names=column_ratings)
+movies = pd.read_csv("movies2.csv)
+ratings = pd.read_csv("ratings.csv")
 
 movie_ratings = pd.merge(movies,ratings, on='movieId', how='inner')
 movie_ratings.drop('timestamp', axis=1, inplace=True)
@@ -57,6 +57,7 @@ def get_recommendations(selected_movies):
     correlatedMovies = pd.merge(correlatedMovies, movies, on = 'title')
     
     final_recommendation = correlatedMovies.query('mean>3.5 and count>300').sort_values('correlation', ascending=False)
+    final_recommendation = final_recommendation[np.isin(final_recommendation['title'], userInput, invert=True)]
     recommendations =  final_recommendation['title'].head(3).tolist()
     
     return recommendations
