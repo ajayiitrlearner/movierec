@@ -67,16 +67,16 @@ def get_recommendations(selected_movies):
    # return recommendations
 
 # Read movie titles from the CSV file if it exists
-movies_df = pd.read_csv("movies.csv") if "movies.csv" in os.listdir() else None
+movies_df = pd.read_csv("movies2.csv") if "movies2.csv" in os.listdir() else None
 # If movies_df is None or empty, fallback to the default list
-movies = movies_df["title"].tolist() if movies_df is not None else ["Movie 1", "Movie 2", "Movie 3", "Movie 4", "Movie 5"]
+movies2 = movies_df["title"].tolist() if movies_df is not None else ["Movie 1", "Movie 2", "Movie 3", "Movie 4", "Movie 5"]
 
 # Streamlit app
 def main():
     st.title("Movie Recommender System")
     
     # Select multiple movies
-    selected_movies = st.multiselect("Select Movies", movies)
+    selected_movies = st.multiselect("Select Movies", movies2)
     
     if st.button("Get Recommendations"):
         recommendations = get_recommendations(selected_movies)
