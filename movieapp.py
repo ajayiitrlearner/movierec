@@ -9,7 +9,7 @@ filterwarnings('ignore')
 column_movies = ["movieId", "title", "genres"] 
 column_ratings = ["userId", "movieId", "rating", "timestamp"]
 
-movies = pd.read_csv("movies2.csv)
+movies = pd.read_csv("movies2.csv")
 ratings = pd.read_csv("ratings.csv")
 
 movie_ratings = pd.merge(movies,ratings, on='movieId', how='inner')
