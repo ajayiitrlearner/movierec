@@ -59,12 +59,8 @@ def get_recommendations(selected_movies):
     final_recommendation = correlatedMovies.query('mean>3.5 and count>300').sort_values('correlation', ascending=False)
     final_recommendation = final_recommendation[np.isin(final_recommendation['title'], userInput, invert=True)]
     recommendations =  final_recommendation['title'].head(3).tolist()
-    del correlatedMovies
+    
     return recommendations
-#def get_recommendations(selected_movies):
-    # Your recommendation logic goes here
-  #  recommendations = ["Recommendation 1", "Recommendation 2", "Recommendation 3"]
-   # return recommendations
 
 # Read movie titles from the CSV file if it exists
 movies_df = pd.read_csv("movies2.csv") if "movies2.csv" in os.listdir() else None
