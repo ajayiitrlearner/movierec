@@ -93,15 +93,15 @@ def main():
     # Display images and names
     col1, col2, col3, col4, col5 = st.columns(5)
     with col1:
-        st.image("me.JPG", caption="Ajay Macharla")
+        st.image("ajay.jpg", caption="Ajay Macharla")
     with col2:
-        st.image("movva.jpeg", caption="Ravi Teja Movva")
+        st.image("ravi.jpg", caption="Ravi Teja Movva")
     with col3:
         st.image("shashi.jpeg", caption="Shashi Karrenagari")
     with col4:
-        st.image("me.JPG", caption="Rakesh Pallagani")
+        st.image("rakesh.jpg", caption="Rakesh Pallagani")
     with col5:
-        st.image("sriram.jpeg", caption="Sriram Ganeshraj")
+        st.image("sriram.jpg", caption="Sriram Ganeshraj")
 
 # Call the main function
 if __name__ == "__main__":
