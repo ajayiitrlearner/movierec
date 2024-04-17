@@ -1,5 +1,4 @@
 
-```python
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -114,6 +113,5 @@ def main():
 # Call the main function
 if __name__ == "__main__":
     main()
-```
 
-This code will display thumbs up and thumbs down buttons after showing the recommendations, allowing users to provide feedback.
+
