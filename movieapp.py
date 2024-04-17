@@ -1,4 +1,3 @@
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -83,9 +82,8 @@ def main():
         
         # Feedback
         st.write("Please provide feedback:")
-        col1, col2 = st.columns(2)
-        thumbs_up = col1.button("👍")
-        thumbs_down = col2.button("👎")
+        thumbs_up = st.button("👍")
+        thumbs_down = st.button("👎")
         if thumbs_up:
             st.write("You liked the recommendations! Thanks for the feedback.")
         elif thumbs_down:
@@ -114,5 +112,3 @@ def main():
 # Call the main function
 if __name__ == "__main__":
     main()
-
-
