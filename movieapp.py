@@ -82,10 +82,12 @@ def main():
     
     # Feedback
     st.write("Please provide feedback:")
-    thumbs_up, thumbs_down = st.columns(2).beta_columns(2)
-    if thumbs_up.button("👍"):
+    col1, col2 = st.columns(2)
+    thumbs_up = col1.button("👍")
+    thumbs_down = col2.button("👎")
+    if thumbs_up:
         st.write("We are glad you liked the recommendations! Thanks for the feedback.")
-    if thumbs_down.button("👎"):
+    if thumbs_down:
         st.write("We're sorry you didn't like the recommendations. We'll try to improve.")
     
     # Display in small text
