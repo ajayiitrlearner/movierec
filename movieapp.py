@@ -1,4 +1,3 @@
-To include feedback options (thumbs up and down arrows) after showing recommendations, you can modify the Streamlit app to allow users to provide feedback on the recommendations. Here's how you can do it:
 
 ```python
 import streamlit as st
