@@ -1,3 +1,6 @@
+To include feedback options (thumbs up and down arrows) after showing recommendations, you can modify the Streamlit app to allow users to provide feedback on the recommendations. Here's how you can do it:
+
+```python
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -80,6 +83,15 @@ def main():
         for recommendation in recommendations:
             st.write(recommendation)
         
+        # Feedback
+        st.write("Please provide feedback:")
+        thumbs_up = st.button("👍")
+        thumbs_down = st.button("👎")
+        if thumbs_up:
+            st.write("You liked the recommendations! Thanks for the feedback.")
+        elif thumbs_down:
+            st.write("We're sorry you didn't like the recommendations. We'll try to improve.")
+        
         # Redirect to another page
         st.experimental_set_query_params(recommendations=recommendations)
     
@@ -103,3 +115,6 @@ def main():
 # Call the main function
 if __name__ == "__main__":
     main()
+```
+
+This code will display thumbs up and thumbs down buttons after showing the recommendations, allowing users to provide feedback.
