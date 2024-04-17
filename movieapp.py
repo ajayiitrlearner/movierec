@@ -79,16 +79,17 @@ def main():
         st.write("Here are your movie recommendations based on your selection:")
         for recommendation in recommendations:
             st.write(recommendation)
-    
-    # Feedback
-    st.write("Please provide feedback:")
-    col1, col2 = st.columns(2)
-    thumbs_up = col1.button("👍")
-    thumbs_down = col2.button("👎")
-    if thumbs_up:
-        st.write("We are glad you liked the recommendations! Thanks for the feedback.")
-    if thumbs_down:
-        st.write("We're sorry you didn't like the recommendations. We'll try to improve.")
+        
+        # Feedback
+        st.write("Please provide feedback:")
+        thumbs_up, thumbs_down = st.columns(2)
+        if thumbs_up.button("👍"):
+            st.write("You liked the recommendations! Thanks for the feedback.")
+        elif thumbs_down.button("👎"):
+            st.write("We're sorry you didn't like the recommendations. We'll try to improve.")
+        
+        # Redirect to another page
+        st.experimental_set_query_params(recommendations=recommendations)
     
     # Display in small text
     st.write("A project by:")
